@@ -1,13 +1,13 @@
+import Carousel from "@/components/Carousel";
+import { getHeroesData } from "@/services/getHeroes";
+
 interface IProps {
   params: {
     id: string;
   };
 }
 
-export default function HeroPage({ params: { id } }: IProps) {
-  return (
-    <main>
-      <h1>Spider {id}</h1>
-    </main>
-  );
+export default async function HeroPage({ params: { id } }: IProps) {
+  const heroes = await getHeroesData();
+  return <Carousel heroes={heroes.data} activeId={id} />;
 }

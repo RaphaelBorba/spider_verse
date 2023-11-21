@@ -6,7 +6,7 @@ import HeroPicture from "../heroPicture";
 
 import styles from "./herosList.module.scss";
 
-import { spidermanFont } from "@/fonts";
+import { spidermanFont } from "@/fonts/heroFont";
 import { IHeroData } from "@/interfaces/heroes";
 
 interface IProps {
