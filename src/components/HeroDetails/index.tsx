@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import styles from "./heroDetails.module.scss";
 
-import { spidermanFont } from "@/fonts/heroFont";
+import { spidermanFont } from "@/fonts/spiderManFont";
 import { quicksand } from "@/fonts/quicksand";
 import { IHeroData } from "@/interfaces/heroes";
 
