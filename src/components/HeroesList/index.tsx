@@ -1,3 +1,5 @@
+import HeroPicture from "../heroPicture";
+
 import styles from "./herosList.module.scss";
 
 import { spidermanFont } from "@/fonts";
@@ -13,6 +15,17 @@ export default function HeroesList({ heroes }: IProps) {
       <h1 className={`${spidermanFont.className} ${styles.title}`}>
         Personagens
       </h1>
+
+      <section className={styles.heroes}>
+        {heroes.map((hero) => (
+          <div
+            key={hero.id}
+            className={`${styles.imageContainer} ${styles[hero.id]}`}
+          >
+            <HeroPicture hero={hero} />
+          </div>
+        ))}
+      </section>
     </>
   );
 }
