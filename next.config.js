@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
-    DOMAIN_ORIGIN: process.env.DOMAIN_ORIGIN,
+    NEXT_PUBLIC_BASE_API_URL: process.env.NEXT_PUBLIC_BASE_API_URL,
   },
 };
 
