@@ -8,6 +8,7 @@ import HeroPicture from "../heroPicture";
 import styles from "./carousel.module.scss";
 
 import { IHeroData } from "@/interfaces/heroes";
+import { enPosition, getItemStyles } from "@/services/getItemStyles";
 
 interface IProps {
   heroes: IHeroData[];
@@ -32,6 +33,20 @@ export default function Carousel({ heroes, activeId }: IProps) {
 
     setVisibleItem(visibleItems);
   }, [heroes, activeIndex]);
+
+  useEffect(() => {
+    const htmlEl = document.querySelector("html");
+
+    if (!htmlEl || !visibleItems) return;
+
+    const currentHeroId = visibleItems[enPosition.MIDDLE].id;
+    htmlEl.style.backgroundImage = `url("/spiders/${currentHeroId}-background.png")`;
+    htmlEl.classList.add("hero-page");
+
+    return () => {
+      htmlEl.classList.remove("hero-page");
+    };
+  }, [visibleItems]);
 
   const handleChangeActiveIndex = (newDirection: number) => {
     setActiveIndex((prevActiveIndex) => prevActiveIndex + newDirection);
@@ -71,37 +86,3 @@ export default function Carousel({ heroes, activeId }: IProps) {
     </div>
   );
 }
-
-enum enPosition {
-  FRONT = 0,
-  MIDDLE = 1,
-  BACK = 2,
-}
-
-const getItemStyles = (position: enPosition) => {
-  if (position === enPosition.FRONT) {
-    return {
-      zIndex: 3,
-      filter: "blur(10px)",
-      scale: 1.2,
-    };
-  }
-
-  if (position === enPosition.MIDDLE) {
-    return {
-      zIndex: 2,
-      left: 300,
-      scale: 0.8,
-      top: "-10%",
-    };
-  }
-
-  return {
-    zIndex: 1,
-    filter: "blur(10px)",
-    left: 160,
-    top: "-20%",
-    scale: 0.6,
-    opacity: 0.8,
-  };
-};
